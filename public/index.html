@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>Image Search Abstraction Layer</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/style.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Image Search Abstraction Layer</h1>
+            <ul>
+                <h3>用户故事</h3>
+                <ol>
+                    <li>根据指定的字符串描述，获取一组符合描述的图片地址和文字描述以及页面地址；</li>
+                    <li>可以在地址中增加一个参数 ?offset=2 来对返回结果进行分页；</li>
+                    <li>可以获取一个列表，显示最近几次搜索的搜索语句和返回页面地址。</li>
+                </ol>
+                
+                <h3>使用示例</h3>
+                <p>
+                    <code>
+                        <a href='https://aqueous-falls-68815.herokuapp.com/api/imagesearch/lolcats%20funny?offset=10'>
+                            https://aqueous-falls-68815.herokuapp.com/api/imagesearch/lolcats%20funny?offset=10
+                        </a>
+                    </code>
+                </p>
+                <p>或</p>
+                <p>
+                    <code>
+                        <a href='https://aqueous-falls-68815.herokuapp.com/api/latest/imagesearch/'>
+                            https://aqueous-falls-68815.herokuapp.com/api/latest/imagesearch/
+                        </a>
+                    </code>
+                </p>
+
+                <h3>输出示例</h3>
+                <p>
+                    <code>
+                        [
+                            {
+                                "url": "https://lh3.googleusercontent.com/-XLHQz-u6Qt0/UMPqUahjFCI/AAAAAAAAOhQ/j0mhITF0bOI/w530-h471-n/EUy2C.gif",
+                                "snippet": "Gwendolyn Fecteau - Google+",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMAG-pyEJhYIKdY405X9CIXurKgBCgBK_OV78nXdqIKLzy7U_6rLmS0-Z5",
+                                "context": "https://plus.google.com/110440290107062433406"
+                            },
+                            {
+                                "url": "https://lh3.googleusercontent.com/-WDucsMv_YNg/AAAAAAAAAAI/AAAAAAAAGa8/ueGhxJ4anOo/photo.jpg",
+                                "snippet": "The swan dive reproduced by a funny cat !! #lolcats &lt;https://plus ...",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe7iFfrdzlxfLoRQbtKABH1QgzHBG0BeAwkvZjnKuT189udVcAKA4hwYDB",
+                                "context": "https://plus.google.com/114464567784546909661/posts/SwSR2PKw83b"
+                            },
+                            {
+                                "url": "https://lh3.googleusercontent.com/proxy/9Tp1ImedlJa9yBheozAyBypbSLyCQbx5PXqHgJxiDMoUys1hmEIH9kkKan8oVQ0v5Q=s500-p",
+                                "snippet": "Eric Machine - Google+",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3HzM3-tKaVJzYhwl-A-pW9e0aY3xm1yNjj4Ui8oE65iR71P0gEeGae8YBMQ",
+                                "context": "https://plus.google.com/109498438114566027632"
+                            },
+                            {
+                                "url": "http://lh5.ggpht.com/_5eY0c1g-zJw/S7QNVUbbCLI/AAAAAAAAAHU/-otmme19A7E/these%20are%20not%20the%20droids%20youre%20looking%20for%20star%20wars%20picture%20funny%5B6%5D.gif",
+                                "snippet": "these are not the droids youre ...",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7i1kijtgc-g3Csa9-fLKMmqhHtvlZVAZbowKTjcqrjY62Vc_IbgrONo8",
+                                "context": "https://sites.google.com/site/theamazingsiteofawesomness/fun-photos?tmpl=%2Fsystem%2Fapp%2Ftemplates%2Fprint%2F&showPrintDialog=1"
+                            },
+                            {
+                                "url": "https://lh3.googleusercontent.com/HaZmE-Nmh547Z1OdPU6ycjD9WX5c-8wsUvfS_GNzA9LP8NHaiNal0l5SKRT8tWInaYugNOH4IL5yLA=w640-h586-no",
+                                "snippet": "Album - Google+",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSBalBpAWrm5YaFGttKVb6LJyy0Kf6cAOlil3BQwqz2StKHCIRyq6mXQU6",
+                                "context": "https://plus.google.com/photos/113465606151099275605/albums/5942000828468165681/5942000837702228370"
+                            },
+                            {
+                                "url": "https://www.google.com/trends/2014/static/images/pets-image-and-text-2-320.jpg",
+                                "snippet": "Cats, Dogs & Other Pets | Google Year in Search 2014",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGbiEbKnb153UT6LmeDEJav_d1gHZddQhtc9Kz4m19Eg97rIfI9rvG1KU",
+                                "context": "https://www.google.com/trends/2014/story/pets.html"
+                            },
+                            {
+                                "url": "https://lh3.googleusercontent.com/-9np-SnaEOQQ/UJr6DoLMbnI/AAAAAAAALn0/XyrLN1RQohE/w530-h298-n/tumblr_m8rsv0zc4a1qijtg8o1_500.gif",
+                                "snippet": "Gwendolyn Fecteau - Google+",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQjdy93aMfTW22nOwWFydvXOihNb_4jB841KuXvvnxxHw03yjich66g0qR",
+                                "context": "https://plus.google.com/110440290107062433406"
+                            },
+                            {
+                                "url": "https://lh5.googleusercontent.com/-exGK5aqzJwI/AAAAAAAAAAI/AAAAAAAAA-g/QsTnhogyudk/photo.jpg",
+                                "snippet": "The swan dive reproduced by a funny cat !! #lolcats &lt;https://plus ...",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmP-0nZm16LQEbCg6Ps18Dgt7hBWKCYnpBrKRsnxIYHQ7r14E5P2SOoMZw7g",
+                                "context": "https://plus.google.com/114464567784546909661/posts/SwSR2PKw83b"
+                            },
+                            {
+                                "url": "https://lh4.googleusercontent.com/-zDcbUzfPdWg/AAAAAAAAAAI/AAAAAAAAGC8/pYP0zySTzJc/photo.jpg",
+                                "snippet": "The swan dive reproduced by a funny cat !! #lolcats &lt;https://plus ...",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEzSH7BgCDcqImhXCuUknYb41BUST3KVpGo5e90VQpNL3FuoCIxV5DlQPQ",
+                                "context": "https://plus.google.com/114464567784546909661/posts/SwSR2PKw83b"
+                            },
+                            {
+                                "url": "https://lh3.googleusercontent.com/-vtiEHt3cQcc/VV-cWgrRV9I/AAAAAAAAACw/L4RNkul-uoI/w326-h325-p/liZ0mSF.jpg",
+                                "snippet": "Eric Machine - Google+",
+                                "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQijI9W4TZeDAUqd22jN64MOQTQKuAnVJgPmFsHsXNyUcLGalwFZvP390I",
+                                "context": "https://plus.google.com/109498438114566027632"
+                            }
+                        ]
+                    </code>
+                </p>
+                <p>或</p>
+                <p>
+                    <code>
+                        [
+                            {
+                                "term": "lolcats funny",
+                                "when": "2017-09-29T07:49:06.720Z"
+                            },
+                            {
+                                "term": "grumpy cat funny",
+                                "when": "2017-09-29T07:50:50.727Z"
+                            }
+                        ]
+                    </code>
+                </p>
+            </ul>
+        </div>
+</html>

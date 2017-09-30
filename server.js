@@ -6,6 +6,13 @@ var mongo = require("mongodb").MongoClient
 var app = express();
 require('dotenv').load();
 
+app.use(require('stylus').middleware('/public/css/style.css'));
+app.use(express.static(path.join(__dirname + '/public')));
+
+app.get('/', function(req, res){
+    res.render("index.html");
+});
+
 app.get('/api/imagesearch/:q', function(req, res){
   var q = req.params.q;
   var offset = req.query.offset;

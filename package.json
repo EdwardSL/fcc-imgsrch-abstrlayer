@@ -14,7 +14,8 @@
     "dotenv": "^4.0.0",
     "express": "~3.2.4",
     "mongodb": "^2.2.31",
-    "socket.io": "~0.9.14"
+    "socket.io": "~0.9.14",
+    "stylus": "^0.54.5"
   },
   "scripts": {
     "start": "node server.js"
